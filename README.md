@@ -1,19 +1,19 @@
 # Welcome to Nuxt Skeleton
 
-![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
+[![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://nuxt.com/docs)
 
 This repository is created for our team to quickly build websites without the worry of installing all the dependencies manually. It provides a solid foundation with pre-installed and configured essential tools and libraries.
 
 ## Included Dependencies
 
-![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
-![Vue](https://img.shields.io/badge/Vue-3.5.7-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-![Vue Router](https://img.shields.io/badge/Vue_Router-4.4.5-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-![PrimeVue](https://img.shields.io/badge/PrimeVue-4.0.7-4CAF50?style=for-the-badge&logo=vue.js&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.12-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Iconify](https://img.shields.io/badge/Iconify-4.1.2-1769AA?style=for-the-badge&logo=iconify&logoColor=white)
-![Nuxt Fonts](https://img.shields.io/badge/Nuxt_Fonts-0.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
-![Nuxt Image](https://img.shields.io/badge/Nuxt_Image-1.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
+[![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://nuxt.com/docs)
+[![Vue](https://img.shields.io/badge/Vue-3.5.7-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/guide/introduction.html)
+[![Vue Router](https://img.shields.io/badge/Vue_Router-4.4.5-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://router.vuejs.org/)
+[![PrimeVue](https://img.shields.io/badge/PrimeVue-4.0.7-4CAF50?style=for-the-badge&logo=vue.js&logoColor=white)](https://primevue.org/installation)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.12-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/docs)
+[![Iconify](https://img.shields.io/badge/Iconify-4.1.2-1769AA?style=for-the-badge&logo=iconify&logoColor=white)](https://icon-sets.iconify.design/ic/)
+[![Nuxt Fonts](https://img.shields.io/badge/Nuxt_Fonts-0.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://github.com/nuxt-modules/fonts)
+[![Nuxt Image](https://img.shields.io/badge/Nuxt_Image-1.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://image.nuxt.com/)
 
 ## Core Dependencies
 
@@ -117,17 +117,19 @@ npm install -D tailwindcss@3.4.12 postcss@8.4.47 autoprefixer@10.4.20
 
 ### Iconify v4.1.2
 
-Iconify is a unified icon framework.
+Iconify is a unified icon framework. Our preferred icon bundle is Google Material Icons.
 
 ```bash
 npm install --save-dev @iconify/vue@4.1.2
 ```
 
+You can browse and search for icons in the Google Material Icons set at [https://icon-sets.iconify.design/ic/](https://icon-sets.iconify.design/ic/). This collection offers a wide range of icons in various categories such as Action, Alert, AV, Communication, Content, Device, and more.
+
 #### Basic Usage Example
 
 ```vue
 <template>
-  <Icon icon="mdi-light:home" />
+  <Icon icon="ic:baseline-home" />
 </template>
 
 <script setup>
