@@ -6,28 +6,14 @@ This repository is created for our team to quickly build websites without the wo
 
 ## Included Dependencies
 
-<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
-  <div style="text-align: center;">
-    <img src="https://primefaces.org/cdn/primevue/images/primevue-logo-dark.svg" alt="PrimeVue Logo" height="50">
-    <p>PrimeVue v4.0.7</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.79614a5f61617ba49a0891494521226b.svg" alt="Tailwind CSS Logo" height="50">
-    <p>Tailwind CSS v3.4.12</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://api.iconify.design/logos:iconify-icon.svg" alt="Iconify Logo" height="50">
-    <p>Iconify v4.1.2</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://nuxt.com/assets/design-kit/logo/icon-green.svg" alt="Nuxt Fonts Module Logo" height="50">
-    <p>Nuxt Fonts v0.8.0</p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://nuxt.com/assets/design-kit/logo/icon-green.svg" alt="Nuxt Image Module Logo" height="50">
-    <p>Nuxt Image v1.8.0</p>
-  </div>
-</div>
+![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue-3.5.7-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Vue Router](https://img.shields.io/badge/Vue_Router-4.4.5-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![PrimeVue](https://img.shields.io/badge/PrimeVue-4.0.7-4CAF50?style=for-the-badge&logo=vue.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.12-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Iconify](https://img.shields.io/badge/Iconify-4.1.2-1769AA?style=for-the-badge&logo=iconify&logoColor=white)
+![Nuxt Fonts](https://img.shields.io/badge/Nuxt_Fonts-0.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
+![Nuxt Image](https://img.shields.io/badge/Nuxt_Image-1.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
 
 ## Core Dependencies
 
@@ -102,7 +88,7 @@ import { Icon } from '@iconify/vue'
 The Nuxt Fonts module provides easy font integration for Nuxt projects.
 
 ```bash
-npx nuxi@latest module add fonts
+npx nuxi@latest module add fonts@0.8.0
 ```
 
 #### Basic Usage Example
@@ -125,7 +111,7 @@ export default defineNuxtConfig({
 The Nuxt Image module is a plugin for optimizing images in Nuxt applications.
 
 ```bash
-npx nuxi@latest module add image
+npx nuxi@latest module add image@1.8.0
 ```
 
 #### Basic Usage Example
