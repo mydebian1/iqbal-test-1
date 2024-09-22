@@ -15,30 +15,35 @@ This repository is created for our team to quickly build websites without the wo
 [![Nuxt Fonts](https://img.shields.io/badge/Nuxt_Fonts-0.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://github.com/nuxt-modules/fonts)
 [![Nuxt Image](https://img.shields.io/badge/Nuxt_Image-1.8.0-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)](https://image.nuxt.com/)
 
-## Core Dependencies
-
-- Nuxt v3.13.2
-- Vue v3.5.7
-- Vue Router v4.4.5
-
-
 ## Folder Structure
 
 Our Nuxt Skeleton project follows a standard Nuxt.js directory structure:
 
-- `app.vue`: The main component of your Nuxt application.
-- `assets/`: Contains uncompiled assets such as styles, images, or fonts.
-- `components/`: Vue components used in your pages and layouts.
-- `layouts/`: Application layouts that can be used across multiple pages.
-- `pages/`: Application views and routes. Nuxt will automatically create the router based on this directory structure.
-- `plugins/`: JavaScript plugins that you want to run before instantiating the root Vue.js application.
-- `public/`: Static files that will be served directly. Files in this directory are accessible through the root URL of your server.
-- `server/`: Server-side logic and API routes.
-- `nuxt.config.ts`: The configuration file for Nuxt.js.
-- `tailwind.config.ts`: Configuration file for Tailwind CSS.
-- `tsconfig.json`: TypeScript configuration file.
-- `package.json` and `package-lock.json`: Define the project dependencies and scripts.
-- `node_modules/`: Contains all the installed npm packages (not tracked in version control).
+```
+nuxt-skeleton/
+├── app.vue
+├── assets/
+│ └── css/
+│ └── main.css
+├── components/
+│ ├── HeaderComponent.vue
+│ └── FooterComponent.vue
+├── layouts/
+│ └── default.vue
+├── pages/
+│ ├── index.vue
+│ └── about.vue
+├── plugins/
+│ └── iconify.ts
+├── public/
+├── server/
+├── nuxt.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+├── package.json
+├── package-lock.json
+└── node_modules/
+```
 
 This structure provides a clear separation of concerns and follows Nuxt.js best practices for organizing your project files.
 
@@ -50,12 +55,12 @@ To use this Nuxt Skeleton project:
    
    Using HTTPS:
    ```bash
-   git clone https://github.com/your-username/nuxt-skeleton.git
+   git clone https://github.com/IOT-Expert/nuxt-skeleton.git
    ```
    
    Or using SSH:
    ```bash
-   git clone git@github.com:your-username/nuxt-skeleton.git
+   git clone git@github.com:IOT-Expert/nuxt-skeleton.git
    ```
 
    Then, navigate to the project directory:
