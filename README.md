@@ -1,6 +1,6 @@
 # Welcome to Nuxt Skeleton
 
-![Nuxt.js Logo](https://nuxt.com/assets/design-kit/logo/icon-green.svg)
+![Nuxt](https://img.shields.io/badge/Nuxt-3.13.2-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white)
 
 This repository is created for our team to quickly build websites without the worry of installing all the dependencies manually. It provides a solid foundation with pre-installed and configured essential tools and libraries.
 
