@@ -21,7 +21,59 @@ This repository is created for our team to quickly build websites without the wo
 - Vue v3.5.7
 - Vue Router v4.4.5
 
-## Dependencies Installation
+
+## Folder Structure
+
+Our Nuxt Skeleton project follows a standard Nuxt.js directory structure:
+
+- `app.vue`: The main component of your Nuxt application.
+- `assets/`: Contains uncompiled assets such as styles, images, or fonts.
+- `components/`: Vue components used in your pages and layouts.
+- `layouts/`: Application layouts that can be used across multiple pages.
+- `pages/`: Application views and routes. Nuxt will automatically create the router based on this directory structure.
+- `plugins/`: JavaScript plugins that you want to run before instantiating the root Vue.js application.
+- `public/`: Static files that will be served directly. Files in this directory are accessible through the root URL of your server.
+- `server/`: Server-side logic and API routes.
+- `nuxt.config.ts`: The configuration file for Nuxt.js.
+- `tailwind.config.ts`: Configuration file for Tailwind CSS.
+- `tsconfig.json`: TypeScript configuration file.
+- `package.json` and `package-lock.json`: Define the project dependencies and scripts.
+- `node_modules/`: Contains all the installed npm packages (not tracked in version control).
+
+This structure provides a clear separation of concerns and follows Nuxt.js best practices for organizing your project files.
+
+## Getting Started
+
+To use this Nuxt Skeleton project:
+
+1. Clone this repository:
+   
+   Using HTTPS:
+   ```bash
+   git clone https://github.com/your-username/nuxt-skeleton.git
+   ```
+   
+   Or using SSH:
+   ```bash
+   git clone git@github.com:your-username/nuxt-skeleton.git
+   ```
+
+   Then, navigate to the project directory:
+   ```bash
+   cd nuxt-skeleton
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Dependencies Installation (if you need to install manually)
 
 ### PrimeVue v4.0.7
 
@@ -122,12 +174,6 @@ npx nuxi@latest module add image@1.8.0
 </template>
 ```
 
-This README now includes installation instructions and basic usage examples for all the mentioned dependencies. Remember to adjust the examples according to your specific project structure and needs.
-
-## Getting Started
-
-1. Clone this repository
-2. Install dependencies: `npm install`
-3. Start development server: `npm run dev`
+Now you have a fully set up Nuxt project with all the included dependencies ready to use!
 
 Happy coding!
