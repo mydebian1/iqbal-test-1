@@ -54,7 +54,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import Button from 'primevue/button';
 
 useSeoMeta({

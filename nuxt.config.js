@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   primevue: {
     usePrimeVue: true,
     components: {
-        include: ['Button']
+      include: ['Button']
     },
     options: {
       ripple: true,

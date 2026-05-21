@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 useSeoMeta({
   title: 'About Nuxt Skeleton - Internal Development Tool',
   ogTitle: 'About Nuxt Skeleton - Internal Development Tool',
