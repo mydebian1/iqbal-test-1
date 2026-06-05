@@ -1,7 +1,6 @@
 <template>
   <div class="flex min-h-screen flex-col bg-background-secondary text-color">
-    <HeaderComponent />
-    <main class="flex-1">
+    <main class="flex flex-1 items-center">
       <slot />
     </main>
     <FooterComponent />
@@ -9,6 +8,5 @@
 </template>
 
 <script setup>
-import HeaderComponent from '~/components/HeaderComponent.vue'
 import FooterComponent from '~/components/FooterComponent.vue'
 </script>

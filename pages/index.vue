@@ -1,71 +1,142 @@
 <template>
-  <div class="container mx-auto px-4 py-10 w-3/6">
-    <h1 class="text-4xl mb-6 text-center open-sans">Welcome to Nuxt Skeleton</h1>
-    
-    <div class="flex flex-col items-center mb-8">
-      <NuxtImg src="/images/Nuxt-logo.png" class="w-64 h-auto mb-6" alt="Nuxt Logo" />
-      
-      <div class="w-full">
-        <p class="text-lg mb-4">
-          This skeleton is designed to do most of the work for Website development. It's built using Nuxt with Vite for better CLI and development experience.
-        </p>
-        <p class="text-lg mb-4">
-          We've integrated PrimeVue components like buttons, datatable, and form inputs. Tailwind CSS is used for fast styling, and Iconify is included to use most open-source icons. Nuxt Fonts allows you to use open-source fonts directly, and the Nuxt Image module is integrated for better image optimization.
-        </p>
-        <p class="text-lg mb-4">
-          SEO meta tags can be added directly into each route using the <code>useSeoMeta</code> composable, as demonstrated in this page's setup. This allows for easy customization of title, description, and other SEO-related information for each page.
-        </p>
-        <NuxtLink to="/about" class="p-button p-component open-sans flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition-colors duration-200">
-            <span class="p-button-icon p-button-icon-left mr-2">
-                <Icon icon="ic:baseline-info" class="w-5 h-5" />
-            </span>
-            <span class="p-button-label">Read More</span>
-        </NuxtLink>
-      </div>
-
-      <h2 class="text-3xl font-semibold mb-6 mt-8 open-sans text-center">Integrated Technologies</h2>
-      <div class="space-y-4">
-        <a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/Vue-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white" alt="Vue" class="mr-4" />
-          <span class="text-sm">A progressive framework for building user interfaces.</span>
-        </a>
-        <a href="https://nuxt.com/docs" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxt.js&logoColor=white" alt="Nuxt" class="mr-4" />
-          <span class="text-sm">The Intuitive Vue Framework for building your next web application.</span>
-        </a>
-        <a href="https://vitejs.dev/guide/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" class="mr-4" />
-          <span class="text-sm">Next Generation Frontend Tooling for faster development.</span>
-        </a>
-        <a href="https://primevue.org/introduction/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/PrimeVue-4a9885?style=for-the-badge&logo=vue.js&logoColor=white" alt="PrimeVue" class="mr-4" />
-          <span class="text-sm">A rich set of open source UI Components for Vue.</span>
-        </a>
-        <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" class="mr-4" />
-          <span class="text-sm">A utility-first CSS framework for rapid UI development.</span>
-        </a>
-        <a href="https://icon-sets.iconify.design/ic/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          <img src="https://img.shields.io/badge/Iconify-1769AA?style=for-the-badge&logo=iconify&logoColor=white" alt="Iconify" class="mr-4" />
-          <span class="text-sm">All popular icon sets, one framework. Over 100,000 open source vector icons.</span>
-        </a>
+  <section class="px-4 py-6 sm:px-6">
+    <div v-if="!checkedSession" class="mx-auto w-full max-w-3xl">
+      <div class="portal-panel p-6">
+        <p class="text-sm font-semibold uppercase text-primary-600">Driver onboarding</p>
+        <h1 class="mt-2 text-2xl font-bold text-color">Checking your session</h1>
       </div>
     </div>
-  </div>
+
+    <div v-else-if="!sessionReady" class="mx-auto w-full max-w-3xl">
+      <div class="portal-panel p-6">
+        <p class="text-sm font-semibold uppercase text-primary-600">Driver onboarding</p>
+        <h1 class="mt-2 text-2xl font-bold text-color">Link not found or expired</h1>
+        <p class="mt-3 text-sm leading-6 text-muted-color">
+          Please use the onboarding link from your invitation email. If the link still does not work, contact the driver team.
+        </p>
+      </div>
+    </div>
+
+    <div v-else class="mx-auto w-full max-w-5xl">
+      <div class="portal-panel p-4 sm:p-6">
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-surface pb-5">
+          <div>
+            <p class="text-sm font-semibold uppercase text-primary-600">Driver recruitment</p>
+            <h1 class="mt-2 max-w-2xl text-2xl font-bold leading-tight text-color sm:text-3xl">
+              Welcome to your onboarding
+            </h1>
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-muted-color">
+              Upload each required document and track the review status from this page.
+            </p>
+          </div>
+          <Tag value="Application pending" severity="warn" />
+        </div>
+
+        <div class="mt-5 portal-panel-muted p-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-base font-semibold text-color">Required Documents</h2>
+              <p class="mt-1 text-sm text-muted-color">
+                {{ reviewSummaryText }}
+              </p>
+            </div>
+            <Tag :value="completionLabel" :severity="completionSeverity" />
+          </div>
+
+          <div class="mt-4 divide-y divide-surface border border-surface bg-background-primary">
+            <div
+              v-for="document in documents"
+              :key="document.name"
+              class="grid gap-3 p-3 sm:grid-cols-[1fr_auto_auto] sm:items-center"
+            >
+              <div>
+                <p class="text-sm font-medium text-color">{{ document.name }}</p>
+                <p class="text-xs text-muted-color">{{ document.detail }}</p>
+                <p v-if="document.uploadedAt" class="mt-1 text-xs text-muted-color">
+                  Uploaded {{ document.uploadedAt }}
+                </p>
+                <p
+                  v-if="document.driverVisibleNote"
+                  class="mt-2 border-l-2 px-3 py-2 text-xs"
+                  :class="document.statusCode === 'rejected'
+                    ? 'border-red-300 bg-red-50 text-red-700'
+                    : 'border-surface bg-surface-50 text-muted-color'"
+                >
+                  {{ document.driverVisibleNote }}
+                </p>
+              </div>
+              <Tag :value="document.status" :severity="document.severity" />
+              <NuxtLink v-if="canUploadDocument(document)" :to="`/documents/${document.code}`">
+                <Button
+                  :label="document.uploaded ? 'Replace' : 'Upload'"
+                  :severity="document.uploaded ? 'secondary' : undefined"
+                  :outlined="document.uploaded"
+                  type="button"
+                />
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
-import Button from 'primevue/button';
+import Button from 'primevue/button'
+import Tag from 'primevue/tag'
+
+const sessionReady = ref(false)
+const checkedSession = ref(false)
+const { user, loadMe } = useDriverAuth()
+const {
+  documents,
+  summary: documentSummary,
+  loadDocuments,
+} = useDriverDocuments()
+
+const uploadedCount = computed(() => documentSummary.value.uploaded_count)
+const approvedCount = computed(() => documentSummary.value.approved_count || 0)
+const rejectedCount = computed(() => documentSummary.value.rejected_count || 0)
+const pendingCount = computed(() => documentSummary.value.pending_count || 0)
+const requiredCount = computed(() => documentSummary.value.required_count || 0)
+const actionRequiredCount = computed(() => documentSummary.value.action_required_count || 0)
+const totalCount = computed(() => documentSummary.value.total_count || documents.value.length)
+const completionLabel = computed(() => `${approvedCount.value} of ${totalCount.value} approved`)
+const completionSeverity = computed(() => {
+  if (totalCount.value > 0 && approvedCount.value === totalCount.value) return 'success'
+  if (actionRequiredCount.value > 0) return 'danger'
+  if (pendingCount.value > 0) return 'warn'
+  return 'secondary'
+})
+const reviewSummaryText = computed(() => {
+  const parts = [`${uploadedCount.value} of ${totalCount.value} uploaded`, `${approvedCount.value} approved`]
+  if (rejectedCount.value) parts.push(`${rejectedCount.value} needs replacement`)
+  if (requiredCount.value) parts.push(`${requiredCount.value} missing`)
+  if (pendingCount.value) parts.push(`${pendingCount.value} awaiting review`)
+  return parts.join(', ')
+})
+const canUploadDocument = (document) => {
+  if (!document.uploaded) return true
+  return ['pending', 'pending_review', 'submitted', 'rejected'].includes(document.statusCode)
+}
+
+onMounted(async () => {
+  const meResult = await loadMe()
+  if (!meResult.success) {
+    checkedSession.value = true
+    return
+  }
+
+  await loadDocuments()
+  sessionReady.value = true
+  checkedSession.value = true
+})
 
 useSeoMeta({
-  title: 'Nuxt Skeleton - Modern Web Development',
-  ogTitle: 'Nuxt Skeleton - Modern Web Development',
-  description: 'A powerful Nuxt-based skeleton for efficient website development with integrated PrimeVue, Tailwind CSS, and more.',
-  ogDescription: 'A powerful Nuxt-based skeleton for efficient website development with integrated PrimeVue, Tailwind CSS, and more.',
+  title: 'Cabline Driver Onboarding',
+  ogTitle: 'Cabline Driver Onboarding',
+  description: 'Driver onboarding portal for Cabline recruitment.',
+  ogDescription: 'Driver onboarding portal for Cabline recruitment.',
 })
 </script>
-<style scoped>
-.open-sans {
-  font-family: 'Open Sans', sans-serif;
-}
-</style>

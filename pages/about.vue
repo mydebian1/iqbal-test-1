@@ -1,34 +1,32 @@
 <template>
-  <div class="container mx-auto px-4 py-10 w-3/6">
-    <h1 class="text-4xl font-bold mb-6 text-center open-sans">About Nuxt Skeleton</h1>
-    
-    <div class="flex flex-col items-center mb-8">
-      
-      <div class="w-full">
-        <p class="text-lg open-sans mb-4">
-          The Nuxt Skeleton library is built specifically for our internal team usage. It's designed to streamline our development process and ensure consistency across projects.
+  <section class="px-4 py-6 sm:px-6">
+    <div class="mx-auto w-full max-w-3xl">
+      <div class="portal-panel p-5 sm:p-6">
+        <p class="text-sm font-semibold uppercase tracking-wide text-primary-600">Support</p>
+        <h1 class="mt-2 text-2xl font-bold leading-tight text-color">Onboarding Help</h1>
+        <p class="mt-4 text-sm leading-6 text-muted-color">
+          This portal will let invited drivers sign in, upload documents, and follow approval progress. The first themed version is ready; the next stage will connect invite, login, and document APIs.
         </p>
-        <p class="text-lg open-sans mb-4">
-          With this skeleton, we can quickly start new projects using a standardized setup. It includes our preferred technologies and configurations, saving time and reducing setup overhead.
-        </p>
-        <p class="text-lg open-sans mb-4">
-          Our team can easily update and maintain this skeleton to reflect our evolving best practices and requirements. This ensures that all new projects benefit from our latest improvements and standards.
-        </p>
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="portal-panel-muted p-3">
+            <p class="text-sm font-semibold text-color">Account access</p>
+            <p class="mt-1 text-sm leading-6 text-muted-color">Use the credentials supplied in your invitation email.</p>
+          </div>
+          <div class="portal-panel-muted p-3">
+            <p class="text-sm font-semibold text-color">Document review</p>
+            <p class="mt-1 text-sm leading-6 text-muted-color">The driver team will review uploaded documents before approval.</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
 useSeoMeta({
-  title: 'About Nuxt Skeleton - Internal Development Tool',
-  ogTitle: 'About Nuxt Skeleton - Internal Development Tool',
-  description: 'Learn about our Nuxt Skeleton, an internal tool designed to streamline development processes and ensure consistency across projects.',
-  ogDescription: 'Learn about our Nuxt Skeleton, an internal tool designed to streamline development processes and ensure consistency across projects.',
+  title: 'Cabline Driver Onboarding Support',
+  ogTitle: 'Cabline Driver Onboarding Support',
+  description: 'Support information for the Cabline driver onboarding portal.',
+  ogDescription: 'Support information for the Cabline driver onboarding portal.',
 })
 </script>
-<style scoped>
-.open-sans {
-  font-family: 'Open Sans', sans-serif;
-}
-</style>

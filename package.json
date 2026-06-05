@@ -4,13 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port 3002",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/fonts": "^0.8.0",
     "@nuxt/image": "^1.8.0",
     "@primeuix/themes": "^2.0.3",
     "nuxt": "^3.13.0",

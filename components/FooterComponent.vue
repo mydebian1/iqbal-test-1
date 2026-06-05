@@ -1,7 +1,8 @@
 <template>
-  <footer class="bg-gray-800 text-white p-4 mt-auto">
-    <div class="w-3/6 mx-auto text-center">
-      <p>&copy; 2024 Nuxt Skeleton. All rights reserved.</p>
+  <footer class="border-t border-surface bg-background-primary px-4 py-3">
+    <div class="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-2 text-xs text-muted-color">
+      <span>© 2026 Cabline. All rights reserved.</span>
+      <span>Secure driver recruitment portal</span>
     </div>
   </footer>
 </template>

@@ -1,27 +1,25 @@
 <template>
-  <header class="bg-gray-800 text-white p-4">
-    <div class="w-3/6 mx-auto flex justify-between items-center">
-      <NuxtLink to="/" class="text-2xl font-bold open-sans hover:text-gray-300 transition-colors duration-200">Nuxt Skeleton</NuxtLink>
-      <nav>
-        <ul class="flex space-x-4">
-          <li v-for="link in links" :key="link.path">
-            <NuxtLink
-              :to="link.path"
-              class="hover:text-gray-300 transition-colors duration-200"
-              :class="{ 'border-b-2 border-white': $route.path === link.path }"
-            >
-              {{ link.name }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </nav>
+  <header class="border-b border-surface bg-background-primary">
+    <div class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+      <NuxtLink to="/" class="flex items-center gap-3 text-color">
+        <span class="flex h-10 w-10 items-center justify-center bg-primary-100 text-sm font-bold text-primary-600">CL</span>
+        <span>
+          <span class="block text-base font-semibold leading-tight">Cabline</span>
+          <span class="block text-xs text-muted-color">Driver Onboarding</span>
+        </span>
+      </NuxtLink>
+
+      <div v-if="user" class="min-w-0 text-right">
+        <p class="truncate text-sm font-semibold text-color">Welcome {{ driverName }}</p>
+        <p class="truncate text-xs text-muted-color">{{ driverEmail }}</p>
+      </div>
     </div>
   </header>
 </template>
 
 <script setup>
-const links = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-];
+const { user } = useDriverAuth()
+
+const driverName = computed(() => user.value?.name || user.value?.username || 'Driver')
+const driverEmail = computed(() => user.value?.email || user.value?.username || '')
 </script>
