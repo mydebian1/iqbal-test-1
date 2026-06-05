@@ -26,6 +26,15 @@
           <div class="mt-3">
             <Tag :value="currentDocument.status" :severity="currentDocument.severity" />
           </div>
+          <div
+            v-if="currentDocument.driverVisibleNote"
+            class="mt-4 border-l-2 px-3 py-2 text-sm"
+            :class="currentDocument.statusCode === 'rejected'
+              ? 'border-red-300 bg-red-50 text-red-700'
+              : 'border-surface bg-surface-50 text-muted-color'"
+          >
+            {{ currentDocument.driverVisibleNote }}
+          </div>
         </div>
 
         <form class="mt-5 space-y-5" @submit.prevent="submitDocument">
@@ -153,6 +162,7 @@ const form = reactive({
   expiryDate: '',
 })
 
+const companyId = computed(() => String(route.params.companyId || '').trim())
 const documentCode = computed(() => String(route.params.documentCode || '').replace(/-/g, '_'))
 const currentDocument = computed(() => documents.value.find((item) => item.code === documentCode.value))
 const acceptedFileTypes = computed(() => {
@@ -177,7 +187,7 @@ const requiredFieldsReady = computed(() => {
 })
 const canSubmit = computed(() => Boolean(currentDocument.value && requiredFieldsReady.value && !isSubmitting.value))
 
-const goBack = () => router.push('/')
+const goBack = () => router.push(`/${companyId.value}`)
 
 const clearPreview = () => {
   if (previewUrl.value) URL.revokeObjectURL(previewUrl.value)
@@ -286,7 +296,7 @@ const submitDocument = async () => {
       method: 'POST',
       body: payload,
     })
-    await router.push('/')
+    await router.push(`/${companyId.value}`)
   } catch (error) {
     errorMessage.value = error?.data?.statusMessage || error?.statusMessage || error?.data?.message || 'Document upload failed'
   } finally {
@@ -297,7 +307,7 @@ const submitDocument = async () => {
 onMounted(async () => {
   const meResult = await loadMe()
   if (!meResult.success) {
-    checkedSession.value = true
+    await router.replace(`/${companyId.value}/login`)
     return
   }
   await loadDocuments()

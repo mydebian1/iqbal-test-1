@@ -1,55 +1,81 @@
 <template>
-  <section class="w-full px-4 py-8 sm:px-6">
-    <div class="mx-auto w-full max-w-2xl">
-      <div class="portal-panel p-5 sm:p-6">
-        <template v-if="!hasCompanyId">
-          <p class="text-sm font-semibold uppercase text-primary-600">Driver onboarding</p>
-          <h1 class="mt-2 text-2xl font-bold text-color">Link not found or expired</h1>
-          <p class="mt-3 text-sm leading-6 text-muted-color">
-            Please use the onboarding link from your invitation email. If the link still does not work, contact the driver team.
-          </p>
-        </template>
+  <section class="px-4 py-6 sm:px-6">
+    <div v-if="!checkedSession" class="mx-auto w-full max-w-3xl">
+      <div class="portal-panel p-6">
+        <p class="text-sm font-semibold uppercase text-primary-600">Driver onboarding</p>
+        <h1 class="mt-2 text-2xl font-bold text-color">Checking your session</h1>
+      </div>
+    </div>
 
-        <template v-else>
-          <p class="text-sm font-semibold uppercase text-primary-600">Driver recruitment</p>
-          <h1 class="mt-2 text-2xl font-bold leading-tight text-color sm:text-3xl">
-            Sign in to your onboarding
-          </h1>
-          <p class="mt-3 text-sm leading-6 text-muted-color">
-            Use the email and temporary password from your invitation email. Your company code is already included in this link.
-          </p>
+    <div v-else-if="!sessionReady" class="mx-auto w-full max-w-3xl">
+      <div class="portal-panel p-6">
+        <p class="text-sm font-semibold uppercase text-primary-600">Driver onboarding</p>
+        <h1 class="mt-2 text-2xl font-bold text-color">Link not found or expired</h1>
+        <p class="mt-3 text-sm leading-6 text-muted-color">
+          Please use the onboarding link from your invitation email. If the link still does not work, contact the driver team.
+        </p>
+      </div>
+    </div>
 
-          <form class="mt-6 border border-surface bg-background-secondary p-4" @submit.prevent="handleLogin">
-            <label class="block space-y-1">
-              <span class="text-sm text-muted-color">Email</span>
-              <InputText v-model="form.email" type="email" autocomplete="username" class="w-full" />
-            </label>
+    <div v-else class="mx-auto w-full max-w-5xl">
+      <div class="portal-panel p-4 sm:p-6">
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b border-surface pb-5">
+          <div>
+            <p class="text-sm font-semibold uppercase text-primary-600">Driver recruitment</p>
+            <h1 class="mt-2 max-w-2xl text-2xl font-bold leading-tight text-color sm:text-3xl">
+              Welcome to your onboarding
+            </h1>
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-muted-color">
+              Upload each required document and track the review status from this page.
+            </p>
+          </div>
+          <Tag value="Application pending" severity="warn" />
+        </div>
 
-            <label class="mt-4 block space-y-1">
-              <span class="text-sm text-muted-color">Password</span>
-              <Password
-                v-model="form.password"
-                autocomplete="current-password"
-                :feedback="false"
-                toggle-mask
-                input-class="w-full"
-                class="w-full"
-              />
-            </label>
-
-            <div v-if="errorMessage" class="mt-4 border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-              {{ errorMessage }}
+        <div class="mt-5 portal-panel-muted p-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 class="text-base font-semibold text-color">Required Documents</h2>
+              <p class="mt-1 text-sm text-muted-color">
+                {{ reviewSummaryText }}
+              </p>
             </div>
+            <Tag :value="completionLabel" :severity="completionSeverity" />
+          </div>
 
-            <Button
-              :label="loading ? 'Signing in...' : 'Log in'"
-              type="submit"
-              class="mt-4 w-full"
-              :disabled="!canSubmit"
-              :loading="loading"
-            />
-          </form>
-        </template>
+          <div class="mt-4 divide-y divide-surface border border-surface bg-background-primary">
+            <div
+              v-for="document in documents"
+              :key="document.name"
+              class="grid gap-3 p-3 sm:grid-cols-[1fr_auto_auto] sm:items-center"
+            >
+              <div>
+                <p class="text-sm font-medium text-color">{{ document.name }}</p>
+                <p v-if="document.uploadedAt" class="mt-1 text-xs text-muted-color">
+                  Uploaded {{ document.uploadedAt }}
+                </p>
+                <p
+                  v-if="document.driverVisibleNote"
+                  class="mt-2 border-l-2 px-3 py-2 text-xs"
+                  :class="document.statusCode === 'rejected'
+                    ? 'border-red-300 bg-red-50 text-red-700'
+                    : 'border-surface bg-surface-50 text-muted-color'"
+                >
+                  {{ document.driverVisibleNote }}
+                </p>
+              </div>
+              <Tag :value="document.status" :severity="document.severity" />
+              <NuxtLink v-if="canUploadDocument(document)" :to="`/${companyId}/document/${document.code}`">
+                <Button
+                  :label="document.uploaded ? 'Replace' : 'Upload'"
+                  :severity="document.uploaded ? 'secondary' : undefined"
+                  :outlined="document.uploaded"
+                  type="button"
+                />
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -57,52 +83,62 @@
 
 <script setup>
 import Button from 'primevue/button'
-import InputText from 'primevue/inputtext'
-import Password from 'primevue/password'
+import Tag from 'primevue/tag'
 
-definePageMeta({
-  layout: 'login',
-})
-
+const sessionReady = ref(false)
+const checkedSession = ref(false)
 const route = useRoute()
 const router = useRouter()
-const { login, loading } = useDriverAuth()
-
-const form = reactive({
-  email: '',
-  password: '',
-})
-const errorMessage = ref('')
+const { user, loadMe } = useDriverAuth()
+const {
+  documents,
+  summary: documentSummary,
+  loadDocuments,
+} = useDriverDocuments()
 
 const companyId = computed(() => String(route.params.companyId || '').trim())
-const hasCompanyId = computed(() => /^[0-9A-Za-z_-]+$/.test(companyId.value))
-const canSubmit = computed(() => hasCompanyId.value && form.email.trim() && form.password.trim() && !loading.value)
-
-const handleLogin = async () => {
-  errorMessage.value = ''
-  if (!canSubmit.value) {
-    errorMessage.value = 'Enter your email and password to continue.'
-    return
-  }
-
-  const result = await login({
-    tenantId: companyId.value,
-    username: form.email.trim().toLowerCase(),
-    password: form.password,
-  })
-
-  if (!result.success) {
-    errorMessage.value = result.error || 'Login failed'
-    return
-  }
-
-  await router.push('/')
+const uploadedCount = computed(() => documentSummary.value.uploaded_count)
+const approvedCount = computed(() => documentSummary.value.approved_count || 0)
+const rejectedCount = computed(() => documentSummary.value.rejected_count || 0)
+const pendingCount = computed(() => documentSummary.value.pending_count || 0)
+const requiredCount = computed(() => documentSummary.value.required_count || 0)
+const actionRequiredCount = computed(() => documentSummary.value.action_required_count || 0)
+const totalCount = computed(() => documentSummary.value.total_count || documents.value.length)
+const completionLabel = computed(() => `${approvedCount.value} of ${totalCount.value} approved`)
+const completionSeverity = computed(() => {
+  if (totalCount.value > 0 && approvedCount.value === totalCount.value) return 'success'
+  if (actionRequiredCount.value > 0) return 'danger'
+  if (pendingCount.value > 0) return 'warn'
+  return 'secondary'
+})
+const reviewSummaryText = computed(() => {
+  const parts = [`${uploadedCount.value} of ${totalCount.value} uploaded`, `${approvedCount.value} approved`]
+  if (rejectedCount.value) parts.push(`${rejectedCount.value} needs replacement`)
+  if (requiredCount.value) parts.push(`${requiredCount.value} missing`)
+  if (pendingCount.value) parts.push(`${pendingCount.value} awaiting review`)
+  return parts.join(', ')
+})
+const canUploadDocument = (document) => {
+  if (!document.uploaded) return true
+  return ['pending', 'pending_review', 'submitted', 'rejected'].includes(document.statusCode)
 }
 
+onMounted(async () => {
+  const meResult = await loadMe()
+  if (!meResult.success) {
+    await router.replace(`/${companyId.value}/login`)
+    return
+  }
+
+  await loadDocuments()
+  sessionReady.value = true
+  checkedSession.value = true
+})
+
 useSeoMeta({
-  title: 'Cabline Driver Login',
-  ogTitle: 'Cabline Driver Login',
-  description: 'Sign in to the Cabline driver onboarding portal.',
-  ogDescription: 'Sign in to the Cabline driver onboarding portal.',
+  title: 'Cabline Driver Onboarding',
+  ogTitle: 'Cabline Driver Onboarding',
+  description: 'Driver onboarding portal for Cabline recruitment.',
+  ogDescription: 'Driver onboarding portal for Cabline recruitment.',
 })
 </script>
