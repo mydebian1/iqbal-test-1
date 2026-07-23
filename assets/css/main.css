@@ -21,29 +21,6 @@
   }
 }
 
-@layer components {
-  .portal-panel {
-    border: 1px solid var(--p-content-border-color);
-    background: var(--p-background-primary);
-  }
-
-  .portal-panel-muted {
-    border: 1px solid var(--p-content-border-color);
-    background: var(--p-background-secondary);
-  }
-
-  .portal-label {
-    font-size: var(--p-typography-font-size-sm);
-    color: var(--p-text-muted-color);
-  }
-
-  .portal-title {
-    font-size: var(--p-typography-font-size-2xl);
-    line-height: var(--p-typography-line-height-tight);
-    font-weight: 700;
-  }
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
