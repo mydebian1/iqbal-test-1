@@ -26,3 +26,8 @@
     text-wrap: balance;
   }
 }
+
+/* Inter font */
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}

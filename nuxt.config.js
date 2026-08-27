@@ -35,21 +35,31 @@ export default defineNuxtConfig({
       },
     ],
   },
+
   modules: [
     '@primevue/nuxt-module',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
   ],
+
   googleFonts: {
     families: {
       Manrope: {
         wght: [400, 500, 600, 700],
       },
+
+      Inter: {
+        ital: '0,1',
+        opsz: '14..32',
+        wght: '100..900',
+      }
     },
+
     display: 'swap',
     download: false,
     preload: false,
   },
+
   primevue: {
     usePrimeVue: true,
     components: {
